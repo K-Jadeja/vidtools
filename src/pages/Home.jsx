@@ -1,49 +1,45 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import UtilityCard from "../components/UtilityCard";
 
 function Home() {
+  const utilities = [
+    { name: "Generate Subtitles", path: "/generate-subtitles", large: true },
+    { name: "Extract MP3", path: "/extract-mp3" },
+    { name: "Video Format Conversion", path: "/video-format-conversion" },
+    { name: "Watermarking", path: "/watermarking" },
+    { name: "Video Merging", path: "/video-merging" },
+    { name: "Video Compression", path: "/video-compression" },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-500 to-indigo-600 text-white flex flex-col items-center justify-center">
-      {/* Hero Section */}
-      <section className="text-center py-32">
-        <h1 className="text-6xl font-extrabold tracking-tight drop-shadow-lg">
-          Video Utility App
+    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 pt-24">
+      <section className="text-center py-20 px-4">
+        <h1 className="text-5xl font-bold text-gray-800 mb-4">
+          VidTools: Video Utilities App
         </h1>
-        <p className="mt-6 text-xl max-w-2xl mx-auto drop-shadow-md">
-          All your video needs in one place, with cutting-edge tools at your
-          fingertips.
+        <p className="text-xl text-gray-600 mb-8">
+          All your video processing needs in one place.
         </p>
         <Link
-          to="/utilities"
-          className="mt-10 inline-block bg-white text-blue-600 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-blue-50 transition-transform transform hover:scale-105"
+          to="/generate-subtitles"
+          className="inline-block bg-blue-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition-colors"
         >
-          Explore Utilities
+          Get Started
         </Link>
       </section>
 
-      {/* Utility Cards */}
-      <section className="py-20 px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Link
-            to="/generate-subtitles"
-            className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 text-center hover:bg-opacity-30 transition-all"
-          >
-            <h2 className="text-3xl font-semibold mb-4">Generate Subtitles</h2>
-            <p className="text-lg">
-              Automatically generate subtitles for your videos in various
-              languages.
-            </p>
-          </Link>
-          <Link
-            to="/extract-mp3"
-            className="bg-white bg-opacity-20 backdrop-blur-lg rounded-xl shadow-xl p-8 text-center hover:bg-opacity-30 transition-all"
-          >
-            <h2 className="text-3xl font-semibold mb-4">Extract MP3</h2>
-            <p className="text-lg">
-              Convert your video files to high-quality MP3 audio files.
-            </p>
-          </Link>
-          {/* Add more utility cards here */}
+      {/* Utility Cards - Bento Grid */}
+      <section className="py-12 px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {utilities.map((util) => (
+            <UtilityCard
+              key={util.name}
+              name={util.name}
+              path={util.path}
+              large={util.large}
+            />
+          ))}
         </div>
       </section>
     </div>

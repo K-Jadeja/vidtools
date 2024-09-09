@@ -3,52 +3,49 @@ import VideoUpload from "../components/VideoUpload";
 import ProcessingIndicator from "../components/ProcessingIndicator";
 import CustomVideoPlayer from "../components/CustomVideoPlayer";
 
-function GenerateSubtitles() {
+function ExtractMp3() {
   const [videoFile, setVideoFile] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [subtitleFile, setSubtitleFile] = useState(null);
+  const [audioFile, setAudioFile] = useState(null);
 
   const handleFileUpload = (file) => {
     setVideoFile(file);
   };
 
-  const handleGenerateSubtitles = () => {
+  const handleExtractMp3 = () => {
     setIsProcessing(true);
-    // Simulate backend processing
     setTimeout(() => {
       setIsProcessing(false);
-      setSubtitleFile("/assets/video.mp4");
+      setAudioFile("/assets/Elon Musk_Lex Fridman720p.mp4");
     }, 3000);
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 py-40 px-6">
-      <div className="max-w-4xl mx-auto text-center  ">
-        <h2 className="text-4xl font-bold text-gray-800 mb-8 ">
-          Generate Subtitles
-        </h2>
+      <div className="max-w-4xl mx-auto text-center mt-15">
+        <h2 className="text-4xl font-bold text-gray-800 mb-8">Extract MP3</h2>
         <p className="text-lg text-gray-600 mb-8">
-          Automatically generate subtitles for your video with ease.
+          Extract high-quality MP3 audio from your videos.
         </p>
         <VideoUpload onFileSelect={handleFileUpload} />
         {videoFile && (
           <button
-            onClick={handleGenerateSubtitles}
+            onClick={handleExtractMp3}
             className="bg-blue-600 text-white px-6 py-3 rounded-full shadow-md hover:bg-blue-700 transition-colors"
           >
-            Generate Subtitles
+            Extract MP3
           </button>
         )}
         <ProcessingIndicator isProcessing={isProcessing} />
-        {subtitleFile && (
+        {audioFile && (
           <div className="mt-8">
             <CustomVideoPlayer src={videoFile.name} />
             <a
-              href={subtitleFile}
+              href={audioFile}
               download
               className="mt-4 inline-block bg-green-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-green-600 transition-colors"
             >
-              Download Subtitles
+              Download MP3
             </a>
           </div>
         )}
@@ -57,4 +54,4 @@ function GenerateSubtitles() {
   );
 }
 
-export default GenerateSubtitles;
+export default ExtractMp3;
